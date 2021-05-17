@@ -208,6 +208,76 @@ class LinkedList:
                 dup_values[cur_node.data] = 1
                 prev = cur_node
             cur_node = prev.next
+            
+    def print_nth_from_last(self, n):
+        total_len = self.len_iterative()
+        cur_node = self.head
+        while cur_node:
+            if n == total_len:
+                print(cur_node.data)
+                return cur_node.data
+            total_len -= 1
+            cur_node = cur_node.next
+        if cur_node is None:
+            return
+        
+    def print_nth_from_last_pointers(self, n):
+        p = self.head
+        q = self.head
+        
+        if n > 0:
+            count = 0
+            while q:
+                count += 1
+                if (count >= n):
+                    break
+                q = q.next
+            
+            if not q:
+                print(str(n) + " is greater than the number of nodes in list.")
+                return
+            while p and q.next:
+                p = p.next
+                q = q.next
+            return p.data
+                
+    def print_nth_from_last2(self, n, method):
+        if method == 1:
+            #Method 1:
+            total_len = self.len_iterative()
+            cur = self.head 
+            while cur:
+                if total_len == n:
+                   #print(cur.data)
+                    return cur.data
+                total_len -= 1
+                cur = cur.next
+            if cur is None:
+                return
+
+        elif method == 2:
+            # Method 2:
+            p = self.head
+            q = self.head
+
+            if n > 0:
+                count = 0
+                while q:
+                    count += 1
+                    if(count>=n):
+                        break
+                    q = q.next
+                    
+                if not q:
+                    print(str(n) + " is greater than the number of nodes in list.")
+                    return
+
+                while p and q.next:
+                    p = p.next
+                    q = q.next
+                return p.data
+            else:
+                return None
 
 llist_1 = LinkedList()
 llist_1.append(2)
@@ -246,3 +316,7 @@ llist_2.print_list()
 llist_1.merge_sorted(llist_2)
 print("\nMerged:")
 llist_1.print_list()
+print("Nth from the last")
+llist_1.print_nth_from_last(5)
+print("Nth from the last with pointer")
+llist_1.print_nth_from_last_pointers(5)

@@ -212,7 +212,50 @@ class LinkedList:
                 
             cur_node = prev.next
         
+    def print_nth_from_last(self, n):
+        total_len = self.len_iterative()
         
+        cur_node = self.head
+        while cur_node:
+            if total_len == n:
+                print(cur_node.data)
+                return cur_node.data
+            total_len -= 1
+            cur_node = cur_node.next
+    
+    def print_nth_from_last_pointers(self, n):
+        p = self.head
+        q = self.head
+        length = 0
+        while q:
+            q = q.next
+            length += 1
+        iterative = length - n
+        i = 0
+        while p and iterative != i:
+            p = p.next
+            i += 1
+        return p.data
+            
+    def count_occurences_iterative(self, data):
+        cur_node = self.head
+        dict1 = {}
+        while cur_node:
+            if cur_node.data not in dict1:
+                dict1[cur_node.data] = 1
+            else:
+                dict1[cur_node.data] += 1
+            cur_node = cur_node.next
+        return dict1[data]
+            
+    def count_occurences_recursive(self, node, data):
+        if not node:
+            return 0
+        if node.data == data:
+            return 1 + self.count_occurences_recursive(node.next, data)
+        else:
+            return self.count_occurences_recursive(node.next, data)
+            
 l1 = LinkedList()
 l1.append(2)
 l1.append(3)
@@ -248,6 +291,13 @@ llist_2.append(8)
 print("Merged list")
 l1.merge_sorted(llist_2)
 l1.print_list()
-print("Remorve Dublicates")
+print("Remove Dublicates")
 l1.remove_dublicates()
 l1.print_list()
+print("Nth from the last")
+l1.print_nth_from_last(4)
+print("Nth from the last with pointer")
+l1.print_nth_from_last_pointers(4)
+
+print("Count the number of given")
+print(l1.count_occurences_iterative(3))
