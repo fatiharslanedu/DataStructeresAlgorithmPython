@@ -255,49 +255,96 @@ class LinkedList:
             return 1 + self.count_occurences_recursive(node.next, data)
         else:
             return self.count_occurences_recursive(node.next, data)
+        
+    def rotate(self, k):
+        if self.head and self.head.next:
+            p = self.head
+            q = self.head
+            prev = None
+            count = 0
+            while p and count < k:
+                prev = p
+                p = p.next
+                q = q.next
+                count += 1
+            p = prev #todo: on the pivot
+            while q:
+                prev = q
+                q = q.next
+            
+            q = prev #todo: on the last element
+            
+            q.next = self.head
+            self.head = p.next
+            p.next = None
+            
+    def is_palindrome(self):
+        p = self.head
+        list_palindrome = []
+        prev = None
+        while p:
+            list_palindrome.append(p.data)
+            prev = p
+            p = p.next
+        return list_palindrome == list_palindrome[::-1]
+            
+            
+            
+            
+            
             
 l1 = LinkedList()
-l1.append(2)
-l1.append(3)
-# l1.prepend(4)
-l1.append(8)
-l1.append(9)
+# l1.append(2)
+# l1.append(3)
+# # l1.prepend(4)
+# l1.append(8)
+# l1.append(9)
 # l1.delete_node(4)
 # l1.delete_node(5)
 
 
 # todo: if we dont use while loop 'llist.insert_after_node(llist.head.next, "D")'
 # l1.insert_after_node(3, 7)
-l1.delete_node_at_pos(1)
+# l1.delete_node_at_pos(1)
 
-l1.print_list()
-print("Recursive Length:", l1.len_recursive())
-print("Iterative Length:", l1.len_iterative())
-# l1.swap_nodes(4, 3)
-print("\nSwap of 4 and 3 is:",end='\n')
-l1.print_list()
-print("Reverse operation Iterative")
-reversed = l1.reverse_iterative()
-l1.print_list()
-print("Reverse operation Recursive")
-l1.recursive_iterative()
-l1.print_list()
-llist_2 = LinkedList()
-llist_2.append(2)
-llist_2.append(3)
-llist_2.append(4)
-llist_2.append(6)
-llist_2.append(8)
-print("Merged list")
-l1.merge_sorted(llist_2)
-l1.print_list()
-print("Remove Dublicates")
-l1.remove_dublicates()
-l1.print_list()
-print("Nth from the last")
-l1.print_nth_from_last(4)
-print("Nth from the last with pointer")
-l1.print_nth_from_last_pointers(4)
+# l1.print_list()
+# print("Recursive Length:", l1.len_recursive())
+# print("Iterative Length:", l1.len_iterative())
+# # l1.swap_nodes(4, 3)
+# print("\nSwap of 4 and 3 is:",end='\n')
+# l1.print_list()
+# print("Reverse operation Iterative")
+# reversed = l1.reverse_iterative()
+# l1.print_list()
+# print("Reverse operation Recursive")
+# l1.recursive_iterative()
+# l1.print_list()
+# llist_2 = LinkedList()
+# llist_2.append(2)
+# llist_2.append(3)
+# llist_2.append(4)
+# llist_2.append(3)
+# llist_2.append(2)
+# print("Merged list")
+# l1.merge_sorted(llist_2)
+# l1.print_list()
+# print("Remove Dublicates")
+# l1.remove_dublicates()
+# l1.print_list()
+# print("Nth from the last")
+# l1.print_nth_from_last(4)
+# print("Nth from the last with pointer")
+# l1.print_nth_from_last_pointers(4)
 
-print("Count the number of given")
-print(l1.count_occurences_iterative(3))
+# print("Count the number of given")
+# print(l1.count_occurences_iterative(3))
+# print("Rotate")
+# l1.rotate(3)
+# l1.print_list()
+# print("Palindrome")
+l1.append(2)
+l1.append(3)
+l1.append(4)
+l1.append(2)
+l1.append(2)
+print(l1.is_palindrome())

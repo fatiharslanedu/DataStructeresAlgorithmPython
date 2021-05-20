@@ -278,6 +278,43 @@ class LinkedList:
                 return p.data
             else:
                 return None
+            
+    def rotate(self, k):
+        if self.head and self.head.next:
+            p = self.head
+            q = self.head
+            prev = None
+            count = 0
+            while p and count < k:
+                prev = p
+                p = p.next
+                q = q.next
+                count += 1
+            p = prev
+            while q:
+                prev = q
+                q = q.next
+            q = prev
+            q.next = self.head
+            self.head = p.next
+            p.next = None
+            
+    def is_palindrome(self):
+        p = self.head
+        list_palindrome = []
+        while p:
+            list_palindrome.append(p.data)
+            p = p.next
+        p = self.head
+        while p:
+            data = list_palindrome.pop()
+            if data != p.data:
+                return False
+            p = p.next
+        return True
+    
+    
+            
 
 llist_1 = LinkedList()
 llist_1.append(2)
@@ -320,3 +357,6 @@ print("Nth from the last")
 llist_1.print_nth_from_last(5)
 print("Nth from the last with pointer")
 llist_1.print_nth_from_last_pointers(5)
+print("Rotate")
+llist_1.rotate(4)
+llist_1.print_list()
