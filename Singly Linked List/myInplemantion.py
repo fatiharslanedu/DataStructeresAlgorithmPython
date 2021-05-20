@@ -342,6 +342,8 @@ l1 = LinkedList()
 # l1.rotate(3)
 # l1.print_list()
 # print("Palindrome")
+
+#todo: palindrome test
 l1.append(2)
 l1.append(3)
 l1.append(4)
