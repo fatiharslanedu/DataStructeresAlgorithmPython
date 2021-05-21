@@ -11,9 +11,9 @@ class LinkedList:
     def print_list(self):
         node = self.head
         while node is not None:
-            print(node.data)
+            print(node.data, end=' ')
             node = node.next
-
+        
     def append(self, data):
         new_node = Node(data)
         if self.head is None:
@@ -289,8 +289,48 @@ class LinkedList:
         return list_palindrome == list_palindrome[::-1]
             
             
+    def move_tail_to_head(self):
+        cur_node = self.head
+        p = self.head
+        q = None
+        while cur_node.next:
+            q = cur_node
+            cur_node =cur_node.next
+        
+        cur_node.next = p
+        self.head = cur_node
+        q.next = None
+             
+        print(p.data, cur_node.data, q.data)
+           
+    def sum_two_lists(self, llist):
+        p = self.head
+        q = llist.head
+        resList = LinkedList()
+        
+        res = 0
+        remainder = 0
+        carry = 0
+        while p and q:
+            res = p.data + q.data + carry
+            if res > 9:
+                remainder = res % 10
+                carry = 1            
+                resList.append(remainder) 
+                
+            else:
+                carry = 0
+                resList.append(res)
+                
+            if p:
+                p = p.next
+            if q:
+                q = q.next
             
-            
+        resList.print_list()
+               
+        
+        
             
             
 l1 = LinkedList()
@@ -343,10 +383,29 @@ l1 = LinkedList()
 # l1.print_list()
 # print("Palindrome")
 
-#todo: palindrome test
-l1.append(2)
+# #todo: palindrome test
+# l1.append(7)
+# l1.append(3)
+# l1.append(4)
+# l1.append(6)
+
+# print(l1.is_palindrome())
+# print("list")
+# l1.print_list()
+# print("Tail to head")
+# l1.move_tail_to_head()
+# print("After operation")
+# l1.print_list()
+l1.append(5)
+l1.append(6)
 l1.append(3)
-l1.append(4)
-l1.append(2)
-l1.append(2)
-print(l1.is_palindrome())
+print("List 1:", end = " ")
+l1.print_list()
+l2 = LinkedList()
+l2.append(8)
+l2.append(4)
+l2.append(2)
+print("\nList 2:", end = " ")
+l2.print_list()
+print("\nAfter op")
+llist3 = l1.sum_two_lists(l2)

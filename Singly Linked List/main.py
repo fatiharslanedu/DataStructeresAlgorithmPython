@@ -313,7 +313,47 @@ class LinkedList:
             p = p.next
         return True
     
-    
+    def move_tail_to_head(self):
+        if self.head and self.head.next:
+            last = self.head
+            second_to_last = None
+        while last.next:
+            second_to_last = last
+            last = last.next
+        last.next = self.head
+        second_to_last.next = None
+        self.head = last
+        
+    def sum_two_lists(self, llist):
+        p = self.head
+        q = llist.head
+        
+        sum_llist = LinkedList()
+        
+        carry = 0
+        while p or q:
+            if not p:
+                i = 0
+            else:
+                i = p.data
+            if not q:
+                i = 0
+            else:
+                j = q.data
+            
+            s = i + j + carry
+            if s >= 10:
+                carry = 1
+                remainder = s % 10
+                sum_llist.append(remainder)
+            else:
+                carry = 0
+                sum_llist.append(s)
+            if p:
+                p = p.next
+            if q:
+                q = q.next
+        return sum_llist
             
 
 llist_1 = LinkedList()
@@ -341,22 +381,33 @@ llist_1.append(8)
 # llist_1.recursive_reverse()
 # llist_1.print_list()
 
-llist_2 = LinkedList()
+# llist_2 = LinkedList()
 
-llist_2.append(2)
-llist_2.append(3)
-llist_2.append(4)
-llist_2.append(6)
-llist_2.append(8)
-print("\nLinked list2:")
-llist_2.print_list()
-llist_1.merge_sorted(llist_2)
-print("\nMerged:")
-llist_1.print_list()
-print("Nth from the last")
-llist_1.print_nth_from_last(5)
-print("Nth from the last with pointer")
-llist_1.print_nth_from_last_pointers(5)
-print("Rotate")
-llist_1.rotate(4)
-llist_1.print_list()
+# llist_2.append(2)
+# llist_2.append(3)
+# llist_2.append(4)
+# llist_2.append(6)
+# llist_2.append(8)
+# print("\nLinked list2:")
+# llist_2.print_list()
+# llist_1.merge_sorted(llist_2)
+# print("\nMerged:")
+# llist_1.print_list()
+# print("Nth from the last")
+# llist_1.print_nth_from_last(5)
+# print("Nth from the last with pointer")
+# llist_1.print_nth_from_last_pointers(5)
+# print("Rotate")
+# llist_1.rotate(4)
+# llist_1.print_list()
+
+l1 = LinkedList()
+l1.append(5)
+l1.append(6)
+l1.append(3)
+l2 = LinkedList()
+l2.append(8)
+l2.append(4)
+l2.append(2)
+l3 = l1.sum_two_lists(l2)
+l3.print_list()
