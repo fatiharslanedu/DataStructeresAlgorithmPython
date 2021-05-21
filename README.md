@@ -1,5 +1,5 @@
 # Data Structures and Algorithms with Python
 
-<ul>
-Hi
-</ul>
+1. Stack
+2. Linked List
+3. Circular Linked List
