@@ -48,7 +48,83 @@ class CircularList():
                 break
             pass
         print()
+    
+    def remove(self, key):
+        cur = self.head
+        q = self.head
+        prev = None
+        if not self.head:
+            return
+        
+        while q.next != self.head:
+            q = q.next
+        
+        if self.head.next == self.head:
+            self.head = None
+            return
+        
+        if cur.data == key:
+            q.next = cur.next
+            self.head = cur.next
+            cur = None
+            return
+        else:
+            while cur.next != self.head:
+                if cur.data == key:
+                    break
+                prev = cur
+                cur = cur.next
             
+            if cur is self.head:
+                self.head = None
+            
+            prev.next = cur.next
+            cur = None
+        
+    def __len__(self):
+        cur = self.head
+        count = 0
+        while cur.next is not self.head:
+            count += 1
+            cur = cur.next
+        return count + 1
+            
+    def split_list(self):
+        size = len(self)
+        if size == 0:
+            return
+        if size == 1:
+            return self.head
+        
+        mid = size // 2
+        cur_node = self.head
+        prev = None
+        count = 0
+        while cur_node and count < mid:
+            count += 1
+            prev = cur_node
+            cur_node = cur_node.next
+        
+        prev.next = self.head
+        
+        split_cllist = CircularList()
+        
+        while cur_node.next != self.head:
+            split_cllist.append(cur_node.data)
+            cur_node = cur_node.next
+        split_cllist.append(cur_node.data)
+        
+        self.print_list()
+        print("\n")
+        split_cllist.print_list()
+        
+            
+        
+        
+        
+        
+        
+                  
 
 l1 = CircularList()
 l1.append(2)
@@ -57,4 +133,8 @@ l1.append(4)
 l1.append(5)
 l1.prepend(1)
 l1.print_list()
-            
+print("Remove operation")
+l1.remove(5)
+l1.print_list()
+print("Len of string:", len(l1))
+l1.split_list()

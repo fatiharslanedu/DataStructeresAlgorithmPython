@@ -41,7 +41,67 @@ class CircularLinkedList:
             cur = cur.next
             if cur == self.head:
                 break
-
+            
+    def remove(self, key):
+        if self.head:
+            if self.head.data == key:
+                cur = self.head
+                while cur.next != self.head:
+                    cur = cur.next
+                if self.head == self.head.next: #todo: if only it have one item.
+                    self.head = None
+                else:
+                    cur.next = self.head.next
+                    self.head = self.head.next
+            else:
+                cur = self.head
+                prev = None
+                while cur.next != self.head:
+                    prev = cur
+                    cur = cur.next
+                    if cur.data == key:
+                        prev.next = cur.next
+                        cur = cur.next
+      
+    def __len__(self):
+        cur = self.head
+        count = 0
+        while cur:
+            count += 1
+            cur = cur.next
+            if cur == self.head:
+                break
+        return count
+    
+    def split_list(self):
+        size = len(self)
+        
+        if size == 0:
+            return
+        
+        if size == 1:
+            return self.head
+              
+        mid = size // 2
+        count = 0
+        prev = None
+        cur = self.head
+        
+        while cur and count < mid:
+            count += 1
+            prev = cur 
+            cur = cur.next
+        prev.next = self.head
+        
+        split_cllist = CircularLinkedList()
+        while cur.next != self.head:
+            split_cllist.append(cur.data)
+            cur = cur.next
+        split_cllist.append(cur.data)
+        
+        self.print_list()
+        print("\n")
+        split_cllist.print_list()
 
 cllist = CircularLinkedList()
 cllist.append("C")
@@ -49,3 +109,8 @@ cllist.append("D")
 cllist.prepend("B")
 cllist.prepend("A")
 cllist.print_list()
+print("After remove operation")
+# cllist.remove("A")
+cllist.print_list()
+print("Split operation")
+cllist.split_list()
