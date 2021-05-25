@@ -119,13 +119,52 @@ class CircularList():
         split_cllist.print_list()
         
             
+    def remove_node(self, node):
+        if self.head == node:
+            cur = self.head 
+            while cur.next != self.head:
+                cur = cur.next
+            if self.head == self.head.next:
+                self.head = None
+            else:
+                cur.next = self.head.next 
+                self.head = self.head.next
+        else:
+            cur = self.head 
+            prev = None
+            while cur.next != self.head:
+                prev = cur 
+                cur = cur.next 
+                if cur == node:
+                    prev.next = cur.next
+                    cur = cur.next
         
         
-        
-        
-        
-                  
-
+    def josephus_circle(self, step):
+        cur = self.head
+        length = len(self)
+        while length > 1:
+            count = 1
+            while count != step:
+                cur = cur.next
+                count += 1
+            print("KILL", cur.data)
+            self.remove_node(cur)
+            cur = cur.next
+            length -= 1
+    
+    def is_circular_linked_list(self, input_list):
+        cur = self.head
+        while cur:
+            cur = cur.next
+            if cur.next == self.head:
+                break
+            print(cur.data)
+            
+            
+        print("Hi")
+            
+     
 l1 = CircularList()
 l1.append(2)
 l1.append(3)
@@ -136,5 +175,15 @@ l1.print_list()
 print("Remove operation")
 l1.remove(5)
 l1.print_list()
-print("Len of string:", len(l1))
-l1.split_list()
+# print("Len of string:", len(l1))
+# l1.split_list()
+print("JosephusCircle")
+l1.josephus_circle(2)
+l1.print_list()
+l2 = CircularList()
+l2.append(3)
+l2.append(4)
+l2.append(5)
+l2.append(6)
+print("Is circularList?")
+l1.is_circular_linked_list(l2)
