@@ -3,3 +3,4 @@
 1. Stack
 2. Linked List
 3. Circular Linked List
+4. Doubly Linked List
