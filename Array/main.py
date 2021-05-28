@@ -17,7 +17,7 @@ def arrayAdvanceGame():
     print(arrayAdvance(A1))
 
 
-def arbitraryPrecisionIncrement(): #todo: done
+def arbitraryPrecisionIncrement():  # todo: done
 
     def func1(A):
         A[-1] += 1
@@ -32,14 +32,14 @@ def arbitraryPrecisionIncrement(): #todo: done
             A.append(0)
 
         return A
-    
+
     A = [1, 4, 9]
     print(func1(A))
-    
-    
+
+
 def twoSum():
-    #? Time Complexity: O(n^2)
-    #? Space Complexity: O(1)
+    # ? Time Complexity: O(n^2)
+    # ? Space Complexity: O(1)
     def sol1(A, target):
         for i in range(len(A)):
             for j in range(i, len(A)):
@@ -47,27 +47,27 @@ def twoSum():
                     print(A[i], A[j])
                     return True
         return False
-    
+
     A = [-2, 1, 2, 4, 7, 11]
     print(sol1(A, 13))
-    
-    #? Time Complexity: O(n)
-    #? Space Complexity: O(n)    
+
+    # ? Time Complexity: O(n)
+    # ? Space Complexity: O(n)
     def sol2(A, target):
         keep = {}
         for i in range(len(A)):
             if A[i] in keep:
-                print(keep[A[i]], A[i])   
-                keep[target - A[i]] = A[i]           
+                print(keep[A[i]], A[i])
+                keep[target - A[i]] = A[i]
             else:
                 keep[target - A[i]] = A[i]
-        
+
         return keep
     A = [-2, 1, 2, 4, 7, 11]
     print(sol2(A, 13))
-    
-    #? Time Complexity: O(n)
-    #? Space Complexity: O(1)
+
+    # ? Time Complexity: O(n)
+    # ? Space Complexity: O(1)
     def sol3(A, target):
         j = len(A) - 1
         i = 0
@@ -80,12 +80,13 @@ def twoSum():
             else:
                 j += 1
         return False
-            
+
     A = [-2, 1, 2, 4, 7, 11]
-    print(sol3(A, 13))       
+    print(sol3(A, 13))
+
 
 def optimalTaskAssignment():
-    
+
     def sol(A: list):
         A = sorted(A)
         hours = []
@@ -94,49 +95,62 @@ def optimalTaskAssignment():
             hours.append(A[i] + A[j])
             j -= 1
         return hours
-    
+
     def greedysol(A: list):
         A = sorted(A)
         for i in range(len(A) // 2):
-            print(A[i], A[~i]) #! this start the end
-    
+            print(A[i], A[~i])  # ! this start the end
+
     A = [6, 3, 2, 7, 5, 5]
     print(sol(A))
     print(greedysol(A))
-    
+
+
 def intersectSortedArray():
     A = [2, 3, 3, 5, 7, 8, 11, 9]
     B = [3, 3, 7, 15, 31, 8, 9]
     # print(set(A).intersection(B))
-    
+
     def intersect_Sorted_Array(A: list, B: list):
         j = 0
         i = 0
         intersectArray = list()
         while i < len(A) and j < len(B):
-           
+
             if A[i] == B[j]:
                 if A[i] == B[j] and A[i] != A[i - 1]:
                     intersectArray.append(A[i])
                 i += 1
                 j += 1
-                
+
             elif A[i] < B[j]:
                 i += 1
             else:
                 j += 1
-                
+
         return intersectArray
-                
-            
-            
+
+    print(intersect_Sorted_Array(A, B))
+
+
+def buyAndSellStockOnce():
+    def buy_and_sell_stock_once(prices):
+        max_profit = 0.0
+        min_price = prices[0]
+        for price in prices:
+            min_price = min(min_price, price)
+            compare_profit = price - min_price
+            max_profit = max(max_profit, compare_profit)
+        return max_profit
     
-    print(intersect_Sorted_Array(A,B))
-                
+    A = [310, 315, 275, 295, 260, 270, 290, 230, 255, 250]
+    print(buy_and_sell_stock_once(A))
+    
         
 
 def main():
-    intersectSortedArray()
+    buyAndSellStockOnce()
+
 
 if __name__ == '__main__':
     main()

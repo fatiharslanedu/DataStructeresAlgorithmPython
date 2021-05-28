@@ -82,7 +82,8 @@ def intersectSortedArray():
     B = [3, 3, 7, 15, 31, 8, 9]
     # print(set(A).intersection(B))
 
-    def intersect_Sorted_Array(A: list, B: list): #todo: not sorted array greedy approach.
+    # todo: not sorted array greedy approach.
+    def intersect_Sorted_Array(A: list, B: list):
         j = 0
         i = 0
         intersectArray = list()
@@ -117,8 +118,56 @@ def intersectSortedArray():
     print(intersect_Sorted_Array(A, B))
 
 
+def buyAndSellStockOnce():
+
+    
+
+    def buy_and_sell_stock_once(prices):
+        eb = 0
+        for i in range(len(prices)):
+            for j in range(i + 1, len(prices)):
+                if prices[j] - prices[i] < 0:
+                    continue
+                else:
+                    res = prices[j] - prices[i]
+                    if res > eb:
+                        eb = res                  
+        return eb
+    A = [310, 315, 275, 295, 260, 270, 290, 230, 255, 250]
+    # print(buy_and_sell_stock_once(A))
+    
+    def buy_and_sell_stock_once1(prices):
+        ek = prices[0]
+        eb = 0
+        profit = 0
+        for i in range(len(prices)):
+            if prices[i] < ek:
+                ek = prices[i]
+            if not prices[i - 1]:
+                profit = 0
+                if profit > eb:
+                    eb = profit
+            else:
+                if prices[i] - prices[i - 1] > 0:
+                    profit = prices[i] - ek
+                    if profit > eb:
+                        eb = profit
+                else:
+                    ek = prices[i]
+                    profit = 0
+                    if profit > eb:
+                        eb = profit
+        return eb
+    A = [110, 215, 180, 335, 5]
+    print(buy_and_sell_stock_once1(A))
+        
+                
+            
+                
+
+
 def main():
-    intersectSortedArray()
+    buyAndSellStockOnce()
 
 
 if __name__ == '__main__':
