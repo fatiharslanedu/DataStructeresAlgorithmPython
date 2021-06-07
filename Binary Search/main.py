@@ -1,3 +1,6 @@
+import bisect
+
+
 def binary_search_iterative(data, target): #todo: this take O(logn)
     low = 0
     high = len(data) - 1
@@ -145,7 +148,20 @@ def main():
     data = [-14, -10, 2, 108, 108, 243, 285, 285, 285, 401]
     target = 108
     print(find(data, target))
-
+    
+    print("Bisect Left")
+    A = [-14, -10, 2, 108, 108, 243, 285, 285, 285, 401]
+    print(bisect.bisect_left(A, 108))
+    print(bisect.bisect_left(A, 285))
+    print("Bisect Right")
+    print(bisect.bisect_right(A, -10))
+    print(bisect.bisect_right(A, 285))
+    print("Insort Left and Right")
+    print(A)
+    bisect.insort_left(A, 108)
+    print(A)
+    bisect.insort_right(A, 108)
+    print(A)
 
 if __name__ == '__main__':
     main()

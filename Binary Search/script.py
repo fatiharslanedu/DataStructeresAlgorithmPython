@@ -1,3 +1,4 @@
+import bisect
 def binary_search_iterative(data, target):  # todo: O(logn)
     low = 0
     high = len(data) - 1
@@ -192,6 +193,23 @@ def main():
     target = 108
     print(find(data, target))
     
-
+    print("Bisect Left")
+    A = [-14, -10, 2, 108, 108, 243, 285, 285, 285, 401]
+    #todo: -10 index 1
+    print(bisect.bisect_left(A, -10)) 
+    #todo: First occurunces of 285 is at index 6
+    print(bisect.bisect_left(A, 285))
+    print("Bisect Right")
+    #todo: it returns the index of right one
+    print(bisect.bisect_right(A, -10)) #todo: 2
+    print(bisect.bisect_right(A, 285)) #todo: 9
+    #todo: bisect and bisect_right are same
+    
+    print("Insort left and insort right")
+    print(A)
+    bisect.insort_left(A, 108)
+    print(A)
+    bisect.insort_right(A, 108)
+    print(A)
 if __name__ == '__main__':
     main()
