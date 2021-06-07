@@ -120,7 +120,27 @@ def find_highest_number(A):
         
     return None
     
+def find(A: list, target: int) -> int:
+    low = 0
+    high = len(A)
     
+    while low <= high:
+        mid = (low + high) // 2
+        
+        if target < A[mid]:
+            high = mid - 1
+        elif target > A[mid]:
+            low = mid + 1
+        else: #todo: is equal to target
+            #todo: check it if it is first element
+            if mid - 1 < 0:
+                return mid
+            #todo: check the previous element is not equal.
+            elif A[mid - 1] != target:
+                return mid
+            high = mid - 1
+                
+            
         
 
 def main():
@@ -167,6 +187,10 @@ def main():
     print(find_highest_number(A))
     A = [5, 4, 3, 2, 1]
     print(find_highest_number(A))
+    
+    data = [-14, -10, 2, 108, 108, 243, 285, 285, 285, 401]
+    target = 108
+    print(find(data, target))
     
 
 if __name__ == '__main__':

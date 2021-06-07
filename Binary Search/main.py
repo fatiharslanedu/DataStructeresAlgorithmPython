@@ -85,6 +85,53 @@ def find_fixed_point(A):
     return None
 
 
+def find_highest_number(A):
+    # initalize the value for binary search...
+    low = 0
+    high = len(A) - 1
+
+    # if we want to find bitonic sequence, array must be 3 elements.
+    if len(A) < 3:
+        return None
+    
+    while low <= high:
+        mid = (low + high) // 2
+        
+        # define a variable like a boss
+        # check if the value is not out of index. 
+        mid_left = A[mid - 1] if mid - 1 > 0 else float("-inf")
+        # check the right is not out of bound.
+        mid_right = A[mid + 1] if mid + 1 < high else float("inf")
+        
+        if mid_left < A[mid] and mid_right > A[mid]:
+            low = mid + 1
+        elif mid_left > A[mid] and mid_right < A[mid]:
+            high = mid - 1
+        elif mid_left < A[mid] and mid_right < A[mid]:
+            return A[mid]
+    
+    return None
+        
+def find(A, target):
+    low = 0
+    high = len(A) - 1
+    
+    while low <= high:
+        mid = (low + high) // 2
+        
+        if target < A[mid]:
+            high = mid - 1
+        elif target > A[mid]:
+            low = mid + 1
+        else: #todo: if A[mid] == target...
+            if mid - 1 < 0:
+                return mid
+            if A[mid - 1] != target:
+                return mid
+            high = mid - 1
+    return None        
+
+
 def main():
     
     data = [1, 3, 5, 8, 11, 13, 15]
@@ -94,6 +141,10 @@ def main():
     data = [1, 3, 5, 8, 11, 13, 15]
     target = 3
     print(binary_search_iterative(data, target))
+    
+    data = [-14, -10, 2, 108, 108, 243, 285, 285, 285, 401]
+    target = 108
+    print(find(data, target))
 
 
 if __name__ == '__main__':
