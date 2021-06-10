@@ -134,7 +134,22 @@ def find(A, target):
             high = mid - 1
     return None        
 
-
+def integer_square_root(k: int) -> int:
+    low = 0
+    high = k
+    
+    while low <= high:
+        mid = (low + high) // 2
+        mid_squared = mid * mid
+        #todo: sequence like k is equal to 5 => 1, 4
+        if mid_squared <= k:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return low - 1
+      
+        
+        
 def main():
     
     data = [1, 3, 5, 8, 11, 13, 15]
@@ -162,6 +177,8 @@ def main():
     print(A)
     bisect.insort_right(A, 108)
     print(A)
+    print("\nInteger Square Root\n")
+    print(integer_square_root(300))
 
 if __name__ == '__main__':
     main()

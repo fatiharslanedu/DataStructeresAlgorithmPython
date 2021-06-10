@@ -123,7 +123,7 @@ def find_highest_number(A):
     
 def find(A: list, target: int) -> int:
     low = 0
-    high = len(A)
+    high = len(A) - 1
     
     while low <= high:
         mid = (low + high) // 2
@@ -141,8 +141,30 @@ def find(A: list, target: int) -> int:
                 return mid
             high = mid - 1
                 
+def integer_square_root(k: list):
+    low = 0
+    high = k 
+    
+    while low <= high:
+        mid = (low + high) // 2
+        mid_square = mid * mid
+        if mid_square <= k:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return low - 1            
+
+def find_cyclically(A: list):
+    low = 0
+    high = len(A) - 1
+    while low < high:
+        mid = (low + high) // 2
+        if A[mid] > A[high]:
+            low = mid + 1
+        elif A[mid] <= A[high]:
+            high = mid
+    return low
             
-        
 
 def main():
     data = [1, 3, 5, 7, 11, 15]
@@ -180,12 +202,7 @@ def main():
     print(find_fixed_point(A3))
     
     print("Find highest number")
-    A = [1, 2, 3, 4, 5, 4, 3, 2, 1]
-    print(find_highest_number(A))
-    A = [1, 6, 5, 4, 3, 2, 1]
-    print(find_highest_number(A))
-    A = [1, 2, 3, 4, 5]
-    print(find_highest_number(A))
+    A = [1, 2, 3, 4, 5, 4, 3, 2, 1] 
     A = [5, 4, 3, 2, 1]
     print(find_highest_number(A))
     
@@ -211,5 +228,9 @@ def main():
     print(A)
     bisect.insort_right(A, 108)
     print(A)
+    A = [4, 5, 6, 7, 1, 2, 3]
+    print("Find Cyclically")
+    idx = find_cyclically(A)
+    print(A[idx])
 if __name__ == '__main__':
     main()
