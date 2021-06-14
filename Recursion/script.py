@@ -39,9 +39,28 @@ def calculate_str_length():
     input_str = "LucidProgramming"
     print(calculate_str_len_recurseive(input_str))
 
+def count_consonants_string():
+    vowels = "aeiou"
+    vowels = [x for x in vowels]
+    def iterative_count_consonants(input_str: str):
+        count = 1
+        for i in range(len(input_str)):
+            if input_str[i] in vowels:
+                count += 1
+        return count
+    string = "Welcome to Educative!"
+    print(iterative_count_consonants(string))
 
+    def recursive_count_consonants(input_str: str):
+       if input_str == '':
+           return 0
+       else:
+           if input_str[0].lower() not in vowels and input_str[0].isalpha():
+               return 1 + recursive_count_consonants(input_str[1:])
+           else:
+               return recursive_count_consonants(input_str[1:]) 
 def main():
-    calculate_str_length()
+    count_consonants_string()
 
 
 if __name__ == "__main__":
