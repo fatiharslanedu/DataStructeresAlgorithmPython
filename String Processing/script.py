@@ -1,7 +1,7 @@
 def next_number(s):
     result = []
     i = 0
-    
+
     while i < len(s):
         count = 1
         while i + 1 < len(s) and s[i] == s[i + 1]:
@@ -11,6 +11,7 @@ def next_number(s):
         i += 1
     return "".join(result)
 
+
 def spreadsheet_encode_column(col_str):
     num = 0
     upper = len(col_str) - 1
@@ -18,6 +19,7 @@ def spreadsheet_encode_column(col_str):
         num += 26**upper * (ord(i) - ord('A') + 1)
         upper -= upper
     return num
+
 
 def is_palindrome(s: str):
     i = 0
@@ -27,14 +29,39 @@ def is_palindrome(s: str):
             i += 1
         while not s[j].isalnum() and i < j:
             j -= 1
-        
+
         if s[i].lower() != s[j].lower():
             return False
-        
+
         i += 1
         j -= 1
     return True
-            
+
+
+def is_anagram(s1: str, s2: str):
+    ht = dict()
+
+    if len(s1) != len(s2):
+        return False
+
+    for i in s1:
+        if i in ht:
+            ht[i] += 1
+        else:
+            ht[i] = 1
+
+    for i in s2:
+        if i in ht:
+            ht[i] -= 1
+        else:
+            ht[i] = 1
+
+    for i in ht:
+        if ht[i] != 0:
+            return False
+    return True
+
+
 def main():
     # todo 1
     '''
@@ -52,12 +79,21 @@ def main():
     print(spreadsheet_encode_column("ZZ"))
     '''
     # todo 3
+    '''
     s = "was it a cat I saw?"
     s = ''.join([i for i in s if i.isalnum()]).replace(' ', ' ').lower()
     print(s == s[::-1])    
     s = "Was it a cat I saw?"
     print(is_palindrome(s))
-    
-    
+    '''
+    # todo 4 Anagram
+    s1 = "fairy tales"
+    s2 = "rail safety"
+    s1 = s1.replace(" ", "").lower()
+    s2 = s2.replace(" ", "").lower()
+    print(sorted(s1) == sorted(s2))
+    print(is_anagram(s1, s2))
+
+
 if __name__ == "__main__":
     main()

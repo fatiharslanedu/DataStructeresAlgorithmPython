@@ -47,18 +47,46 @@ def is_palindrome(s: str):
         j -= 1
     return True
 
+def is_anagram(s1: str, s2: str) -> bool:
+    s1 = s1.replace(" ", "").lower()
+    s2 = s2.replace(" ", "").lower()
+    ht = dict()
+    if len(s1) != len(s2):
+        return False
+    
+    for i in s1:
+        if i in ht:
+            ht[i] += 1
+        else:
+            ht[i] = 1
+    
+    for i in s2:
+        if i in ht:
+            ht[i] -= 1
+        else:
+            ht[i] = 1
+            
+    for i in ht:
+        if ht[i] != 0:
+            return False
+        
+    return True
+
 def main():
     # todo: 1
     # print(next_number('13112221'))
     # todo: 2
-    print(spreadsheet_encode_column("ZZ"))
+    # print(spreadsheet_encode_column("ZZ"))
     # todo 3
-    s = "was it a cat I saw?"
-    s = ''.join([i for i in s if i.isalnum()]).replace(' ', '').lower()
-    print(s == s[::-1])
-    s = "was it a cat I saw?"
-    print(is_palindrome(s))
-    
+    # s = "was it a cat I saw?"
+    # s = ''.join([i for i in s if i.isalnum()]).replace(' ', '').lower()
+    # print(s == s[::-1])
+    # s = "was it a cat I saw?"
+    # print(is_palindrome(s))
+    # todo 4
+    s1 = "William Shakespeare" 
+    s2 = "I am a weakish speller"
+    print(is_anagram(s1, s2)) 
 
 
 if __name__ == "__main__":
