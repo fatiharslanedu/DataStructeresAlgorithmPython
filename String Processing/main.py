@@ -133,6 +133,22 @@ def is_perm_2(str1: str, str2: str):
     return all(value == 0 for value in d.values())
 
 
+def is_unique(input_str: str):
+    input_str = input_str.lower()
+    d = dict()
+    for i in input_str:
+        if i in d:
+            return False
+        else:
+            d[i] = 1
+
+    return True
+
+
+def is_unique_2(input_str: str):
+    return len(set(input_str)) == len(input_str)
+
+
 def main():
     # todo: 1
     # print(next_number('13112221'))

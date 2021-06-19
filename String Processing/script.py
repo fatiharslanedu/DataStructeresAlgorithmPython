@@ -125,6 +125,32 @@ def is_perm_2(str_1: str, str_2: str):
     return all(value == 0 for value in d.values())
 
 
+def is_unique(input_str: str):
+    input_str = input_str.lower()
+    d = dict()
+    for i in input_str:
+        if i in d:
+            return False
+        else:
+            d[i] = 1
+
+    return True
+
+
+def is_unique_2(input_str: str):
+    return len(set(input_str)) == len(input_str)
+
+
+def is_unique_3(input_str: str):
+    alpha = "abcdefghijklmnopqrstuvwxyz"
+    for i in input_str:
+        if i in alpha:
+            alpha = alpha.replace(i, "")
+        else:
+            return False
+    return True
+
+
 def main():
     # todo 1
     '''
@@ -175,6 +201,12 @@ def main():
     print(is_perm_2(is_permutation_1, is_permutation_2))
     print(is_perm_2(not_permutation_1, not_permutation_2))
     '''
+    # todo 6 is Unique
+    string = "abCDefGh"
+    string2 = "nonunique"
+    print(is_unique(string))
+    print(is_unique(string2))
+    print(is_unique_3(string))
 
 
 if __name__ == "__main__":
