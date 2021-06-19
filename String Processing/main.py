@@ -148,15 +148,16 @@ def is_unique(input_str: str):
 def is_unique_2(input_str: str):
     return len(set(input_str)) == len(input_str)
 
+
 def int_to_str(input_int: int):
     if input_int < 0:
         is_negative = True
         input_int *= -1
     else:
         is_negative = False
-        
+
     output_str = []
-    
+
     if input_int == 0:
         output_str.append("0")
     else:
@@ -165,12 +166,31 @@ def int_to_str(input_int: int):
             input_int //= 10
         output_str = output_str[::-1]
     output_str = ''.join(output_str)
-    
+
     if is_negative:
         return '-' + output_str
     else:
         return output_str
+
+
+def str_to_int(input_str):
     
+    if input_str[0] == '-':
+        is_negative = True
+        input_str = input_str[1:]
+    else:
+        is_negative = False
+
+    n = 0 # todo: handle to 0 
+    pow = len(input_str) - 1
+    for i in input_str:
+        n += (ord(i) - 48) * 10**pow
+        pow -= 1
+    if is_negative:
+        return -1 * n
+    else:
+        return n
+
 
 def main():
     # todo: 1
@@ -213,6 +233,7 @@ def main():
     print(is_unique_3(string))
     '''
     # todo 7 int to str
+    '''
     input_int = 123
     print(input_int)
     print(type(input_int))
@@ -220,6 +241,12 @@ def main():
     output_str = int_to_str(input_int)
     print(output_str)
     print(type(output_str))
+    '''
+    # todo 8 str to int
+    input_str = "-12332"
+    print(str_to_int(input_str))
+    print(type(str_to_int(input_str)))
+
 
 if __name__ == "__main__":
     main()
