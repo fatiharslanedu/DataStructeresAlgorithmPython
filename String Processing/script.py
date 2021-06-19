@@ -61,19 +61,20 @@ def is_anagram(s1: str, s2: str):
             return False
     return True
 
+
 def is_palin_perm(input_str: str):
     input_str = input_str.replace(" ", "").lower()
-    
+
     d = dict()
-    
+
     for i in input_str:
         if i in d:
             d[i] += 1
         else:
             d[i] = 1
-    
+
     odd_count = 0
-    
+
     for k, v in d.items():
         if v % 2 != 0 and odd_count == 0:
             odd_count += 1
@@ -83,42 +84,46 @@ def is_palin_perm(input_str: str):
 
 # Time Complexity: O(n log n)
 # Space Complexity: O(1)
+
+
 def is_perm_1(str_1: str, str_2: str):
     str_1 = str_1.lower()
     str_2 = str_2.lower()
-    
+
     if len(str_1) != len(str_2):
         return False
-    
+
     str_1 = "".join(sorted(str_1))
     str_2 = "".join(sorted(str_2))
-    
+
     n = len(str_1)
-    
+
     for i in range(n):
         if str_1[i] != str_2[i]:
             return False
     return True
+
 
 def is_perm_2(str_1: str, str_2: str):
     str_1 = str_1.lower()
     str_2 = str_2.lower()
 
     d = dict()
-    
+
     for i in str_1:
         if i in d:
             d[i] += 1
         else:
             d[i] = 1
-    
+
     for i in str_2:
         if i in d:
             d[i] -= 1
         else:
             return False
-    print(d) 
+    print(d)
     return all(value == 0 for value in d.values())
+
 
 def main():
     # todo 1
@@ -154,19 +159,23 @@ def main():
     print(is_anagram(s1, s2))
     '''
     # todo 5
+    '''
     palin_perm = "Tact Coa"
     not_palin_perm = "This is not a palindrome permutation"
-    # print(is_palin_perm(palin_perm))
-    # print(is_palin_perm(not_palin_perm))
+    print(is_palin_perm(palin_perm))
+    print(is_palin_perm(not_palin_perm))
     is_permutation_1 = "google"
     is_permutation_2 = "ooggle"
 
     not_permutation_1 = "not"
     not_permutation_2 = "top"
-    # print(is_perm_1(is_permutation_1, is_permutation_2))
-    # print(is_perm_1(not_permutation_1, not_permutation_2))
+    print(is_perm_1(is_permutation_1, is_permutation_2))
+    print(is_perm_1(not_permutation_1, not_permutation_2))
 
     print(is_perm_2(is_permutation_1, is_permutation_2))
     print(is_perm_2(not_permutation_1, not_permutation_2))
+    '''
+
+
 if __name__ == "__main__":
     main()
